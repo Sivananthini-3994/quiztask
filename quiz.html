@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Quiz</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(cat.jpg);
+            background-size: cover;
+            height: 100%;
+        }
+
+        .timer{
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            font-size: 20px;
+            color: black;
+            border: 1px solid black;
+        }
+
+
+        .start_btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .start_btn button {
+            font-size: 25px;
+            font-weight: 500;
+            color: white;
+            padding: 15px 30px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background: gray;
+            cursor: pointer;
+        }
+        .quiz{
+            margin-top: 0px;
+            background:sticky;
+            background-color: white;
+            height: 30px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color:black;
+            width: 100%;
+            background-color: white;
+            margin-top: 0px;
+            padding: 0 5px;
+        }
+
+        .ques {
+            background-image: url(cat.jpg);
+            margin-left: 0px;
+            background-size: cover;
+        
+        }
+
+        .ques p {
+            margin-left: 80px;
+            margin-top: 40px;
+            padding: 30px 30px;
+            color: black;
+        }
+
+        .ques video {
+            margin-left: 35%;
+        }
+
+        .question {
+            display: none;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        img {
+            margin-left: 35%;
+        }
+
+        .option-container {
+            margin-bottom: 10px;
+        }
+
+        .option {
+            background: aliceblue;
+            border: 1px solid #83fda1;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 17px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .option.correct{
+            background-color: lightgreen;
+        }
+        .option.selected.correct{
+            background-color: lightgreen;
+        }
+        .option.option.selected.incorrect{
+            background-color: lightcoral;
+        }
+
+        .ques button {
+            width: 100px;
+            height: 60px;
+            margin-left: 80%;
+            margin-bottom: 20px;
+            padding: 0 9px;
+            font-size: 18px;
+            font-weight: 400;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: #fff;
+            border-radius: 5px;
+            background: #06f054;
+            border: 1px solid #054b16;
+            line-height: 10px;
+        }
+
+        .ques button:hover {
+            background: #086808;
+        }
+        #submit:hover{
+            background-color: greenyellow;
+        }
+
+        
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="start_btn"><button onClick="startQuiz()">Start Quiz</button></div>
+
+    <div class="quiz">
+        <h2>ABOUT CAT</h2>
+        <div class="ques">
+            <div id="timer" class="timer"></div>
+            <div class="question" id="question1">
+                <p>Question 1: What breed of cat is shown in the video?</p>
+                <video width="320" height="240" controls>
+                    <source src="bombay.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br>
+                <div class="option-container">
+                    <div class="option" onclick="selectOption('Bombay')">Bombay</div>
+                    <div class="option" onclick="selectOption('British Shorthair')">British Shorthair</div>
+                    <div class="option" onclick="selectOption('Bengal')">Bengal</div>
+                    <div class="option" onclick="selectOption('Clowder')">Clowder</div>
+                </div>
+                <div class="next_btn"><button id="next1" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+            </div>
+
+
+            <div class="question" id="question2">
+                <p>Question 2: What breed of cat is shown in the image?</p>
+                <img src="clowder.jpg" alt="Cat Image" width="320" height="240">
+                <br>
+                <div class="option-container">
+                    <div class="option" onclick="selectOption('British Shorthair')">British Shorthair</div>
+                    <div class="option" onclick="selectOption('Bengal')">Bengal</div>
+                    <div class="option" onclick="selectOption('Clowder')">Clowder</div>
+                </div>
+                <div class="next_btn"><button id="next2" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+            </div>                
+
+
+            <div class="question" id="question3">
+                <p>Question 3: How many cats you see this image?</p>
+                <img src="groupcat.jpg" alt="Cat Image" width="320" height="220">
+                <br>
+                <div class="option-container">
+                    <div class="option" onclick="selectOption('15')">15</div>
+                    <div class="option" onclick="selectOption('17')">17</div>
+                    <div class="option" onclick="selectOption('16')">16</div>
+                    <div class="option" onclick="selectOption('18')">18</div>
+                </div>
+                <div class="next_btn"><button id="next3" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+            </div>
+
+
+            <div class="question" id="question4">
+                <p>Question 4: How many difference in this image?</p>
+                <img src="difference.jpg" alt="Cat Image" width="400" height="240">
+                <br>
+                <div class="option-container">
+                    <div class="option" onclick="selectOption('1')">1</div>
+                    <div class="option" onclick="selectOption('2')">2</div>
+                    <div class="option" onclick="selectOption('3')">3</div>
+                    <div class="option" onclick="selectOption('4')">4</div>
+                </div>
+                <div class="next_btn"><button id="next4" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+                </div>
+
+
+
+                <div class="question" id="question5">
+                    <p>Question 5: Listen to the audio clip and tell me what mood the cat is in.</p>
+                    <audio controls>
+                        <source src="audio.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <br>
+                    <div class="option-container">
+                        <div class="option" onclick="selectOption('Hungry')">Hungry</div>
+                        <div class="option" onclick="selectOption('Normal Mood')">Normal Mood</div>
+                        <div class="option" onclick="selectOption('Fight Mood')">Fight Mood</div>
+                       </div>
+                    <div class="next_btn"><button id="next5" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+                </div>
+
+
+
+                <div class="question" id="question6">
+                    <p>Question 6: What is the average lifespan of a domestic cat?.</p>
+                  
+                    <br>
+                    <div class="option-container">
+                        <div class="option" onclick="selectOption('5-8 Years')">5-8 Years</div>
+                        <div class="option" onclick="selectOption('10-12 Years')">10-12 Years</div>
+                        <div class="option" onclick="selectOption('15-18 Years')">15-18 Years</div>
+                       </div>
+                    <div class="next_btn"><button id="next6" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+                </div>
+
+
+                <div class="question" id="question7">
+                    <p>Question 7: What are the primary sense that cats rely on for hunting and navigating their environment?.</p>
+                  
+                    <br>
+                    <div class="option-container">
+                        <div class="option" onclick="selectOption('Taste and Touch')">Taste and Touch</div>
+                        <div class="option" onclick="selectOption('Sight and Smell')">Sight and Smell</div>
+                        <div class="option" onclick="selectOption('Smell and Taste')">Smell and Taste</div>
+                      </div>
+                    <div class="next_btn"><button id="next7" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+                </div>
+
+
+                <div class="question" id="question8">
+                    <p>Question 8:What is a female cat called?.</p>  
+                    <br>
+                    <div class="option-container">
+                        <div class="option" onclick="selectOption('Mare')">Mare</div>
+                        <div class="option" onclick="selectOption('Queen')">Queen</div>
+                        <div class="option" onclick="selectOption('Doe')">Doe</div>
+                    </div>
+                 <div class="next_btn"><button id="next8" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+                </div>                
+
+
+
+                <div class="question" id="question9">
+                    <p>Question 9: What does cat like to eat?</p>
+                    <img src="food.jpg" alt="Cat Image" width="320" height="220">
+                    <br>
+                    <div class="option-container">
+                        <div class="option" onclick="selectOption('Milk')">Milk</div>
+                        <div class="option" onclick="selectOption('Fish')">Fish</div>
+                        <div class="option" onclick="selectOption('Chocolate')">chocolate</div>
+                    </div>
+                    <div class="next_btn"><button id="next9" disabled="disabled" onclick="nextQuestion()">Next Que</button></div>
+                </div>                
+                
+                                  
+                <div class="question" id="question10">
+                    <p>Question 10: Which animal is cats friends?</p>
+                    <img src="friend.jpg" alt="Cat Image" width="320" height="220">
+                    <br>
+                    <div class="option-container">
+                        <div class="option" onclick="selectOption('Dog')">Dog</div>
+                        <div class="option" onclick="selectOption('Mouse')">Mouse</div>
+                        <div class="option" onclick="selectOption('Cat')">Cat</div>
+                    </div>
+    
+                <div class="submit_btn"><button id="submit" onclick="submitQuiz()">Submit</button></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    var currentQuestion = 1;
+    var timer;
+    var totalQuestions=10;
+    var totalTime=100;
+    var questionDuration=totalTime/totalQuestions;
+    var correctOptions = {
+        "question1": "Bombay",
+        "question2": "Clowder",
+        "question3": "17",
+        "question4": "3",
+        "question5": "Hungry",
+        "question6": "15-18 Years",
+        "question7": "Sight and Smell",
+        "question8": "Queen",
+        "question9": "Fish",
+        "question10": "Dog"
+    };
+
+    var selectedOptions = {};
+
+
+    function startQuiz() {
+        document.querySelector('.start_btn').style.display = "none";
+        document.getElementById("question1").style.display = "block";
+        startTimer(questionDuration); 
+    }
+
+    function startTimer(duration) {
+        var timerDisplay = document.getElementById('timer');
+        var timerSeconds = duration;
+        timer = setInterval(function () {
+            timerDisplay.textContent = timerSeconds + "s";
+            timerSeconds--;
+            if (timerSeconds < 0) {
+                clearInterval(timer);
+                nextQuestion(); 
+            }
+        }, 1000);
+    }
+
+    function selectOption(option) {
+        selectedOptions['question' + currentQuestion] = option;
+        var options = document.querySelectorAll('.option');
+        options.forEach(function(opt) {
+            opt.classList.remove('correct', 'wrong'); 
+        });
+        event.target.classList.add('correct');
+        document.getElementById('next' + currentQuestion).disabled = false; 
+
+        var answered = Object.keys(selectedOptions).length === document.querySelectorAll('.question').length;
+        if (answered) {
+            document.getElementById('submit').style.display = 'block'; 
+        }
+    }
+
+    function nextQuestion() {
+        clearInterval(timer);
+        var current = document.getElementById("question" + currentQuestion);
+        current.style.display = "none";
+        currentQuestion++;
+        var next = document.getElementById("question" + currentQuestion);
+        next.style.display = "block";
+        startTimer(questionDuration);
+         
+    }
+
+    function submitQuiz() {
+        clearInterval(timer);
+        var score = calculateScore();
+        localStorage.setItem('quizScore', score);
+        window.location.href = "result.html";
+    }
+
+    function calculateScore() {
+        var score = 0;
+        for (var question in selectedOptions) {
+            if (selectedOptions.hasOwnProperty(question)) {
+                if (selectedOptions[question] === correctOptions[question]) {
+                    score++;
+                }
+            }
+        }
+        return score;
+    }
+</script>
+</body>
+</html>
+

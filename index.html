@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body{
+            background-image:url(quizcat.jpg);
+        }
+        .entroll{
+            border: 5px solid black;
+            width: 400px;
+            height: 100px;
+             margin-left: 50%;
+             margin-top: 15%;
+            border-radius: 5px;
+        }
+        .name{
+            margin-top: 30px;
+            margin-left: 23px;
+
+        }
+        .start_btn{
+            margin-top: 1%;
+            margin-left: 45%;
+            height: 40px;
+            width: 80px;
+            font-weight: 500;
+            font-size: 20px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1><b>Test Your Knowledge!</b></h1>
+    </center>
+
+<div class="entroll">
+    <center><b>Welcome!</b></center>
+    <div class="name">
+    <label  >USER NAME</label>
+    <input type="text" id="usernameInput" oninput="checkUsername()">
+    </div>
+<div class="start_btn" id="startBtn">
+    <button onclick="startQuiz()">Start</button></a></div>
+</div>
+
+<script>
+    function checkUsername() {
+        var username = document.getElementById("usernameInput").value;
+        var startBtn = document.getElementById("startBtn");
+
+        if (username.trim() !== "") {
+            startBtn.style.pointerEvents = "auto"; 
+            startBtn.style.opacity = "1"; 
+        } else {
+            startBtn.style.pointerEvents = "none"; 
+            startBtn.style.opacity = "0.5"; 
+        }
+}
+
+function startQuiz() {
+        var username = document.getElementById("usernameInput").value;
+        if (username.trim() !== "") {
+            localStorage.setItem('username',username);
+            window.location.href = "quiz.html"; 
+        }
+}
+</script>
+</body>
+</html>

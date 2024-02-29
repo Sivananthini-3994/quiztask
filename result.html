@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <style>
+        /* CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+        }
+
+        #score {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .question {
+            margin-bottom: 10px;
+        }
+        a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;     text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #45a049;
+}
+    </style>
+</head>
+<body>
+    <h1>Your Quiz Score</h1>
+    <p id="score"></p>
+
+    <div id="questions"></div>
+    <a href="index.html">Try Again</a>
+
+    <script>
+        var username = localStorage.getItem('username');
+        var score = localStorage.getItem('quizScore');
+        var questionsWithAnswers = {
+            "Question 1: What breed of cat is shown in the video?": "Bombay",
+            "Question 2: What breed of cat is shown in the image?": "Clowder",
+            "Question 3: How many cats you see this image?": "17",
+            "Question 4: How many difference in this image?": "3",
+            "Question 5: Listen to the audio clip and tell me what mood the cat is in.": "Hungry",
+            "Question 6: What is the average lifespan of a domestic cat?.": "15-18 Years",
+            "Question 7: What are the primary sense that cats rely on for hunting and navigating their environment?.": "Sight and Smell",
+            "Question 8:What is a female cat called?.": "Queen",
+            "Question 9: What does cat like to eat?": "Fish",
+            "Question 10: Which animal is cats friends?": "Dog"
+        };
+
+        if (username && score) {
+            document.getElementById("score").innerText = "HEY " + username + ", Your score is " + score;
+        } else {
+            document.getElementById("score").innerText = "Score not available";
+        }
+
+        var questionsDiv = document.getElementById("questions");
+        for (var question in questionsWithAnswers) {
+            if (questionsWithAnswers.hasOwnProperty(question)) {
+                var questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+                questionDiv.innerHTML = "<p><strong>" + question.replace("question", "Question ") + ":</strong> " + questionsWithAnswers[question] + "</p>";
+                questionsDiv.appendChild(questionDiv);
+            }
+        }
+    </script>
+</body>
+</html>
